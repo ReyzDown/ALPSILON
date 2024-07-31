@@ -34,7 +34,6 @@
    sudo apt install phpmyadmin
    ```
    - During installation, choose "yes" for all prompts.
-   - Use the password: `***l3tm31n###***`
 
 8. **Configure Database Access:**
    - Connect to MariaDB using the root user:
@@ -68,6 +67,6 @@
     ```
 
 12. **Access phpMyAdmin:**
-    - Connect to the database on the Raspberry Pi using your web browser, put in the IP address of your Rasp followed by /phpmyadmin to get to the login page and log in using the credentials: `raspoutine:l3tm31n###`
+    - Connect to the database on the Raspberry Pi using your web browser, put in the IP address of your Rasp followed by /phpmyadmin to get to the login page and log in using the credentials: `raspoutine:password`
 
 
