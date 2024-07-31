@@ -3,12 +3,14 @@ import os
 import subprocess
 import time
 import serial
+import re
 import sys
-from config import Config
-
+from src.config import Config
+from src.info_mac import InfoMac
 
 
 def compile_sketch(sketch_dir):
+    """ Compilation du Sketch ino (bluetooth / wifi) """
     arduino_cli_path = "arduino-cli"
 
     compile_cmd = [arduino_cli_path, "compile", "--fqbn", "esp32:esp32:esp32", sketch_dir]
@@ -22,6 +24,7 @@ def compile_sketch(sketch_dir):
         sys.exit(1)
 
 def upload_sketch(sketch_dir, port):
+    """ Upload the code to the esp32 """
     arduino_cli_path = "arduino-cli"
 
     upload_cmd = [arduino_cli_path, "upload", "-p", port, "--fqbn", "esp32:esp32:esp32", sketch_dir]
@@ -35,13 +38,19 @@ def upload_sketch(sketch_dir, port):
         sys.exit(1)
 
 def read_serial_data(port):
+    """ Read Serial port and find the mac address with regex and Call the InfoMac Class"""
     print("Reading data from serial port...")
+    mac_regex = r'([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})'
     try:
         with serial.Serial(port, 115200, timeout=1) as ser:
             while True:
                 if ser.in_waiting > 0:
                     line = ser.readline().decode('utf-8').strip()
                     print(line)
+                    mac_match = re.search(mac_regex, line)
+                    if mac_match:
+                        mac_address = mac_match.group(0)
+                        InfoMac(mac_address) # Check fabriquant
                     if line == "End Scan":
                         #print("Fin du scan")
                         exit(1)
@@ -96,6 +105,8 @@ def main():
         print(f"An error occurred while sending data to the ESP32: {e}")
 
     read_serial_data(args.port)
+
+
 
 if __name__ == "__main__":
     main()

@@ -1,12 +1,3 @@
-/** Example of continuous scanning for BLE advertisements.
- * This example will scan forever while consuming as few resources as possible
- * and report all advertisments on the serial monitor.
- *
- * Created: on January 31 2021
- *      Author: H2zero
- *
- */
-
 #include "NimBLEDevice.h"
 
 NimBLEScan* pBLEScan;
@@ -16,6 +7,9 @@ class MyAdvertisedDeviceCallbacks: public NimBLEAdvertisedDeviceCallbacks {
       Serial.printf("Advertised Device: %s \n", advertisedDevice->toString().c_str());
     }
 };
+void sendScanResult(const char* result) {
+    Serial.write(result, strlen(result));
+}
 
 void setup() {
     Serial.begin(115200);
@@ -46,10 +40,9 @@ void setup() {
             pBLEScan->start(5, nullptr, false);
         }
     }
+    sendScanResult("End Scan\n");
 
 }
 
 void loop() {
-  // If an error occurs that stops the scan, it will be restarted here.
-
 }

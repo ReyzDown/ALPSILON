@@ -1,3 +1,0 @@
-MAC address 00:1A:2B:3C:4D:5E belongs to manufacturer: Ayecom Technology Co., Ltd.
-MAC address A0:B1:C2:D3:E4:F5 not found in the database.
-MAC address 2c:93:fb:6d:b0:c0 belongs to manufacturer: Sercomm France Sarl
