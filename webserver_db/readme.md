@@ -68,6 +68,6 @@
     ```
 
 12. **Access phpMyAdmin:**
-    - Connect to the database on the Raspberry Pi using the credentials: `raspoutine:l3tm31n###`
+    - Connect to the database on the Raspberry Pi using your web browser, put in the IP address of your Rasp followed by /phpmyadmin to get to the login page and log in using the credentials: `raspoutine:l3tm31n###`
 
 
