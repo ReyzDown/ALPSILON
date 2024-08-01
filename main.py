@@ -37,6 +37,10 @@ def upload_sketch(sketch_dir, port):
         print(f"An error occurred during upload: {e}")
         sys.exit(1)
 
+def save_serial_data(file, line):
+    with open(file, "a") as file:
+        file.write(line)
+
 def read_serial_data(port):
     """ Read Serial port and find the mac address with regex and Call the InfoMac Class"""
     print("Reading data from serial port...")
@@ -62,7 +66,7 @@ def main():
     parser.add_argument("-m", "--mode", choices=["wifi", "bluetooth"], required=True, help="Mode to run (wifi or bluetooth)")
     parser.add_argument("-p", "--port", required=True, help="Serial port for the ESP32 (e.g., COM3 ou /dev/ttyUSB0)")
     parser.add_argument("-nb", "--number", type=int, default=10, help="Number of scans (default is 10)")
-    parser.add_argument("-s", "--save", type=str, help="Save serial output in file.txt")
+    #parser.add_argument("-s", "--save", type=str, help="Save serial output in file.txt")
 
     args = parser.parse_args()
 
